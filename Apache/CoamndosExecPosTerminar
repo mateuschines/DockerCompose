@@ -1,0 +1,13 @@
+sudo su
+
+docker exec -t nome_do_container bash
+
+#dentro da pasta etc/apache2 estara instalado, mas apenas rodar os comandos
+
+a2enmod rewrite
+
+# and restart the apache
+
+service apache2 restart
+
+# ira funcionar o htaccess
