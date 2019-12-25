@@ -1,0 +1,33 @@
+version: "2"
+services:
+    php:
+        build: .
+        ports:
+            - "8080:80"
+        volumes:
+            - .:/var/www/html
+        links:
+            - mysql
+        networks:
+            - default
+    mysql:
+        image: mysql:5.7
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: newDbChines
+            MYSQL_USER: usuario
+            MYSQL_PASSWORD: china123
+            MYSQL_ROOT_PASSWORD: china123
+        volumes:
+            - ./mysql:/var/lib/mysql
+        networks:
+            - default
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links:
+            - mysql
+        ports:
+            - 8000:80
+        environment:
+          - PMA_ARBITRARY=1
